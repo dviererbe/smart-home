@@ -12,16 +12,17 @@ blueprint:
 
     switch_action:
       name: Switch action
+      description: "The action of the switch to react to."
       default: toggle
       selector:
         select:
           options:
             - label: Button Pressed
               value: toggle
-            - label: Green
-              value: Button 1 Pressed
-            - label: Blue
-              value: Button 2 Pressed
+            - label: Button 1 Pressed
+              value: toggle_l1
+            - label: Button 2 Pressed
+              value: toggle_l2
           custom_value: true
           multiple: false
 
