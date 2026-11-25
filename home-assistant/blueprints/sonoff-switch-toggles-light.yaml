@@ -32,6 +32,7 @@ blueprint:
         entity:
           filter:
             - domain: light
+          multiple: true
 
 triggers:
   - trigger: mqtt
