@@ -1,0 +1,46 @@
+# $schema: https://git.sr.ht/~johnhamelink/hass-json-schema/blob/main/json-schemas/blueprint-automation.json
+blueprint:
+  name: SONOFF switch toggles light
+  description: "Toggle a light when a detached SONOFF switch sends a Zigbee2MQTT action. Note: If you your light is also ZigBee device, consider binding the switch directly to the light, this allows the switch to work without Home Assistant running."
+  domain: automation
+  input:
+    switch_topic:
+      name: Switch MQTT topic
+      description: "The device topic of the switch (e.g. `zigbee2mqtt/hallway_switch`)."
+      selector:
+        text: {}
+
+    switch_action:
+      name: Switch action
+      default: toggle
+      selector:
+        select:
+          options:
+            - label: Button Pressed
+              value: toggle
+            - label: Green
+              value: Button 1 Pressed
+            - label: Blue
+              value: Button 2 Pressed
+          custom_value: true
+          multiple: false
+
+    target_light:
+      name: Light to toggle
+      selector:
+        entity:
+          filter:
+            - domain: light
+
+triggers:
+  - trigger: mqtt
+    topic: !input switch_topic
+    value_template: "{{ value_json.action | default('') }}"
+    payload: !input switch_action
+
+actions:
+  - action: light.toggle
+    target:
+      entity_id: !input target_light
+
+mode: queued
