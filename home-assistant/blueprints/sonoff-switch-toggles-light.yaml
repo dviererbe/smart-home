@@ -17,11 +17,11 @@ blueprint:
       selector:
         select:
           options:
-            - label: "`toggle`: Button Pressed (single channel switch)"
+            - label: "Button Pressed (single channel switch)"
               value: toggle
-            - label: "`toggle_l1`: L1 Button Pressed (dual channel switch)"
+            - label: "L1 Button Pressed (dual channel switch)"
               value: toggle_l1
-            - label: "`toggle_l2`: L2 Button Pressed (dual channel switch)"
+            - label: "L2 Button Pressed (dual channel switch)"
               value: toggle_l2
           custom_value: true
           multiple: false
